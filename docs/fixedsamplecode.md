@@ -32,7 +32,11 @@
 ```
 ### install
 
-```sh
+```sh 
+$ mkdir -p ~/projects/project1 && cd $_
+$ mkdir -p public src dist test/{src,dist}
+$ git init
+$ npm init 
 $ npm install react react-dom
 $ npm install -D webpack webpack-cli webpack-dev-server
 $ npm install -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
@@ -46,7 +50,7 @@ $ npm install -D css-loader style-loader babel-loader
 
 ##### testfile(testBabel.js)
 
-***projectdir***/test/testBabel.js
+~/projects/project1/test/src/testBabel.js
 
 ```js
 const add = (a, b) => a + b
@@ -55,18 +59,17 @@ export default add
 ##### execute
 
 ```sh
-$ cd ***projectdir***
-$ alias babel="node /node_modules/@babel/cli/bin/babel.js"
-$ babel ./test/testBabel.js --presets=@babel/env
+$ cd ~/projects/project1/
+$ alias babel="node ./node_modules/@babel/cli/bin/babel.js"
+$ babel ./test/src/testBabel.js --presets=@babel/env
 ```
 
 #### eslint
 
 ##### testfile(testEslint.js)
 
-***projectdir***/test/testEslint.js
-
 ```js
+// ~/projects/project1/test/src/testEslint.js
 
 a = 1 // a is not defined 
 const b = 2 // b is assign ... but never used
@@ -77,17 +80,27 @@ const b = 2 // b is assign ... but never used
 
 ```sh
 
-$ cd ***projectdir***/
-alias eslint="node ./node_modules/eslint/bin/eslint.js"
-$ eslint ./test/testEslint.js
+$ cd ~/projects/project1/
+$ alias eslint="node ./node_modules/eslint/bin/eslint.js"
+$ eslint --init
+$ eslint ./test/src/testEslint.js
 
 ```
+##### eslint --init
+
+- To check syntax and find problems
+- JavaScript modules (import/export)
+- React
+- Use TypeScript => No
+- Code Run => all
+- config file => JSON
+- install them now with npm?  => Yes
 
 #### webpack
 
-##### testfile(testWebpack.main.js)
+##### testfile(testWebpack.js)
 
-***projectdir***/test/testWebpack.main.js
+~/projects/project1/test/src/testWebpack.js
 
 ```js
 import add from './testBabel'
@@ -99,8 +112,9 @@ console.log(add(2, 3))
 ```sh
 
 $ cd ***projectdir***/
-alias webpack=./node_modules/webpack-cli/bin/cli.js
-$ node webpack ./test/testWebpack.main.js -o ./test/dist/out.js
+$ alias webpack="node ./node_modules/webpack-cli/bin/cli.js"
+$ webpack ./test/src/testWebpack.js -o ./test/dist/
+$ node ./test/dist/main.js
 
 ```
 
@@ -116,16 +130,17 @@ $ node webpack ./test/testWebpack.main.js -o ./test/dist/out.js
 
 ### .eslintrc.json
 
+
+
 ```json
 {
   "env": { // ESLintが使用される環境の設定
-    "browser": true, // JSをブラウザで動かす
-    "es6": true      // ES&を使う
+    "browser": true,     // JSをブラウザで動かす
+    "es2021": true      // ES&を使う
   },
   "parserOptions": { // パーサーの設定
     "sourceType": "module", // 
     "ecmaFeatures": {
-        "experimentalObjectRestSpread": true,
         "jsx": true
     }
   },
@@ -136,7 +151,6 @@ $ node webpack ./test/testWebpack.main.js -o ./test/dist/out.js
   }
 }
 ```
-
 
 ### webpack.config
 
@@ -200,12 +214,10 @@ module.exports = {
       },
     ],
   },
-  // ES5(IE11等)向けの指定
-  target: ["web", "es5"],
 }
 ```
 
 
-## Refferance
+## Referance
 
 - [最新版で学ぶwebpack 5入門 JavaScriptのモジュールバンドラ](https://ics.media/entry/12140/)
