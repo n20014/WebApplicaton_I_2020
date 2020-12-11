@@ -8,26 +8,27 @@
 ### package.config(dependencies)
 
 ```json
-  "dependencies": {
-    "npm": "^6.14.9",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.12.8",
-    "@babel/core": "^7.12.9",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.12.7",
-    "babel-loader": "^8.2.2",
-    "css-loader": "^5.0.1",
-    "eslint": "^7.15.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-react": "^7.21.5",
-    "style-loader": "^2.0.0",
-    "webpack": "^5.10.0",
-    "webpack-cli": "^4.2.0",
-    "webpack-dev-server": "^3.11.0"
-  }
+"dependencies": {
+  "npm": "^6.14.9",
+  "react": "^17.0.1",
+  "react-dom": "^17.0.1"
+},
+"devDependencies": {
+  "@babel/cli": "^7.12.10",
+  "@babel/core": "^7.12.10",
+  "@babel/preset-env": "^7.12.10",
+  "@babel/preset-react": "^7.12.10",
+  "babel-eslint": "^10.1.0",
+  "babel-loader": "^8.2.2",
+  "css-loader": "^5.0.1",
+  "eslint": "^7.15.0",
+  "eslint-loader": "^4.0.2",
+  "eslint-plugin-react": "^7.21.5",
+  "style-loader": "^2.0.0",
+  "webpack": "^5.10.0",
+  "webpack-cli": "^4.2.0",
+  "webpack-dev-server": "^3.11.0"
+}
 
 ```
 ### install
@@ -40,8 +41,8 @@ $ npm init
 $ npm install react react-dom
 $ npm install -D webpack webpack-cli webpack-dev-server
 $ npm install -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
-$ npm install -D eslint eslint-loader eslint-plugin-react
-$ npm install -D css-loader style-loader babel-loader
+$ npm install -D eslint eslint-plugin-react@latest
+$ npm install -D babel-loader babel-eslint eslint-loader css-loader style-loader 
 ```
 
 ### 各モジュールの使い方
@@ -118,7 +119,7 @@ $ node ./test/dist/main.js
 
 ```
 
-## p32
+## p32 - p35
 
 ### .babelrc
 
@@ -130,93 +131,101 @@ $ node ./test/dist/main.js
 
 ### .eslintrc.json
 
-
-
 ```json
 {
-  "env": { // ESLintが使用される環境の設定
-    "browser": true,     // JSをブラウザで動かす
-    "es2021": true      // ES&を使う
-  },
-  "parserOptions": { // パーサーの設定
-    "sourceType": "module", // 
-    "ecmaFeatures": {
-        "jsx": true
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+	    "no-console": "off"
+    },
+    "settings" : {
+        "react": {
+            "version" : "detect"
+        }
     }
-  },
-  "plugins": ["react"], // React用のプラグインを使う
-  "extends": ["eslint:recommended", "plugin:react/recommended"], // ルールのデフォルトを設定(ESlintのお勧めを設定している)
-  "rules": {
-    "no-console": "off" // console.logを使えるようにする
-  }
 }
+
 ```
 
 ### webpack.config
 
 ```js
+const path = require('path')
 module.exports = {
-  // モード値を production に設定すると最適化された状態で、
-  // development に設定するとソースマップ有効でJSファイルが出力される
-  mode: "production",
-
-  // メインとなるJavaScriptファイル（エントリーポイント）
-  // src ディレクトリを作成
-  entry: "./src/index.js",
-  // dist ディレクトリ作成
+  mode: 'development',
+  entry: './src/index.js',
   output: {
-    //  出力ファイルのディレクトリ名
-    path: `${__dirname}/dist`,
-    // 出力ファイル名
+    path: path.resolve(__dirname, 'public/dist'),
     filename: 'main.js'
   },
-  devserver: {
-    contentBase: `${__dirname}/dist`,
-    open: true
-  }
+  devServer: {
+    host: '10.0.2.15',
+    contentBase: path.resolve(__dirname, 'public'),
+    port: 3000,
+    publicPath: '/dist/'
+  },
+  devtool: 'eval-source-map',
   module: {
     rules: [
       {
-        // 拡張子 .jsx?$ の場合 (css-loader, stype-loader 適用)
         test: /\.(js|jsx)$/,
+        enforce: 'pre',
         exclude: /node_modules/,
-        use: {
-          loader: "eslint-loader"
-        }
+        loader: 'eslint-loader'
       },
       {
-        // 拡張子 .css の場合 (css-loader, stype-loader 適用)
         test: /\.css$/,
-        use: [
-          {
-            loader: ["css-loader", "style-loader"]
-          }
-        ]
-      },  
-      {
-        // 拡張子 .js の場合 (babel-loader 適用)
-        test: /\.(js|jsx)$/,
-        // ローダーの処理対象から外すディレクトリ
-        exclude: /node_modules/,
-        use: [
-          {
-            // Babel を利用する
-            loader: "babel-loader",
-            // Babel のオプションを指定する
-            options: {
-              presets: [
-                // プリセットを指定することで、ES2020 を ES5 に変換
-                "@babel/preset-env",
-              ],
-            },
-          },
-        ],
+        use: ['style-loader', 'css-loader']
       },
-    ],
-  },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      }
+    ]
+  }
 }
 ```
 
+### public/index.html
+
+```html
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>React App</title>
+
+<div id="root"></div>
+<script src="./dist/main.js"></script>
+```
+
+### src/index.js
+
+```js
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+ReactDOM.render(
+  <h1>Hello, world!</h1>
+  , document.getElementById('root')
+)
+```
 
 ## Referance
 

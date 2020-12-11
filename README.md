@@ -29,5 +29,6 @@
 
 ### sources
 
-- [src directory](./src)
+- [環境構築](./docs/fixsamplecode.md)
+    - [sample](./sample/hello_react)
 - [javascript template](./docs/template.md)
