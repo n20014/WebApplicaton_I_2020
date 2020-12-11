@@ -3,6 +3,7 @@
 
 ## Lecture
 
+- [第 6回 12/10](./docs/lecture20201210.md)
 - [第 5回 12/09](./docs/lecture20201209.md)
 - [第 4回 12/08](./docs/lecture20201208.md)
 - [第 3回 12/03](./docs/lecture20201203.md)
