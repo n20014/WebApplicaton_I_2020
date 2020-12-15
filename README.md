@@ -3,6 +3,7 @@
 
 ## Lecture
 
+- [第 7回 12/15](./docs/lecture20201215.md)
 - [第 6回 12/10](./docs/lecture20201210.md)
 - [第 5回 12/09](./docs/lecture20201209.md)
 - [第 4回 12/08](./docs/lecture20201208.md)
@@ -30,6 +31,7 @@
 
 ### sources
 
-- [環境構築](./docs/fixsamplecode.md)
-    - [sample](./sample/hello_react)
+- [環境構築](./docs/fixedsamplecode.md)
+    - [sample/hello_react](./sample/hello_react)
+- [Codeprep 配列演習](./docs/codeprep_array.md)
 - [javascript template](./docs/template.md)
