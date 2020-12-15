@@ -156,12 +156,50 @@ $ node ./test/dist/main.js
 	    "no-console": "off"
     },
     "settings" : {
-        "react": {
-            "version" : "detect"
+      "react": {
+        "version" : "detect"
         }
     }
 }
 
+```
+
+### package.json
+
+```js
+{
+    "name": "hello_react",
+    "version": "1.0.0",
+    "description": "hello react",
+    "main": "index.js",
+    "scripts": {
+        "start": "webpack serve",
+        "webpack": "webpack"
+    },
+    "keywords": [],
+    "author": "Omas Naohiko",
+    "license": "ISC",
+    "dependencies": {
+        "react": "^17.0.1",
+        "react-dom": "^17.0.1"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.12.10",
+        "@babel/core": "^7.12.10",
+        "@babel/preset-env": "^7.12.10",
+        "@babel/preset-react": "^7.12.10",
+        "babel-eslint": "^10.1.0",
+        "babel-loader": "^8.2.2",
+        "css-loader": "^5.0.1",
+        "eslint": "^7.15.0",
+        "eslint-loader": "^4.0.2",
+        "eslint-plugin-react": "^7.21.5",
+        "style-loader": "^2.0.0",
+        "webpack": "^5.10.0",
+        "webpack-cli": "^4.2.0",
+        "webpack-dev-server": "^3.11.0"
+    }
+}
 ```
 
 ### webpack.config
@@ -204,6 +242,8 @@ module.exports = {
 }
 ```
 
+
+
 ### public/index.html
 
 ```html
@@ -227,6 +267,6 @@ ReactDOM.render(
 )
 ```
 
-## Referance
+## Referance  
 
 - [最新版で学ぶwebpack 5入門 JavaScriptのモジュールバンドラ](https://ics.media/entry/12140/)
