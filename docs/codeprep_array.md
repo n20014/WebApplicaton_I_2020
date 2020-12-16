@@ -199,14 +199,14 @@ function sortByLength(array) {
 ### 関数型 解答
 
 ```js 
-const lengthLessOrEqual = (a, b) => a.length <= b.length
+const propLessOrEqual = prop => (a, b) => a[prop] <= b[prop]
 const comparator= pred => (a, b) => {
   if (pred(a, b)) return 1
   if (pred(b, a)) return -1
   return 0
 }
 
-const sortByLength = array => array.sort(comparator(lengthLessOrEqual))
+const sortByLength = array => array.sort(comparator(propLessOrEqual('length')))
 
 ```
 
@@ -351,13 +351,10 @@ const makeList = n => Array.from(Array(n - 1).keys(), v => v + 2)
 const makePrimeArray = n => {
   const primeList = (rest, limit, acc = []) => {
     const prime = acc.push(rest.shift())      
-    return prime < max 
+    return prime < limit 
       ? primeList(rest.filter(notDividable(prime)), limit, acc)
       : acc.concat(rest)
   }
   return primeList(makeList(n), Math.ceil(Math.sqrt(n)))
 }
 ```
-
-
-
