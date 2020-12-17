@@ -21,7 +21,14 @@
     - [React チュートリアル](https://ja.reactjs.org/tutorial/tutorial.html)
     - [オブジェクト指向から関数型へ](https://ja.reactjs.org/docs/hooks-intro.html)
 - [作りながら学ぶReact](https://www.amazon.co.jp/%E4%BD%9C%E3%82%8A%E3%81%AA%E3%81%8C%E3%82%89%E5%AD%A6%E3%81%B6-React%E5%85%A5%E9%96%80-%E5%90%89%E7%94%B0%E8%A3%95%E7%BE%8E/dp/479805075X/ref=tmm_hrd_swatch_0?_encoding=UTF8&qid=1606874224&sr=8-11)
-
+- [JavaScript API](https://developer.mozilla.org/ja/docs/Web/JavaScript)
+  - [Array](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Array)
+  - [String](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String)
+  - [Object](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object)
+  - [Math](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Math)
+  - [Date](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date)
+  - [Map](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Map)
+  
 ### e-lernings
 
 - [ドットインストール React 入門](https://dotinstall.com/lessons/basic_reactjs)

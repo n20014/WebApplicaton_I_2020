@@ -283,7 +283,7 @@ function addSumToMiddle(array) {
   clone.forEach((v, i) => {
    	array.splice(insertIndex(i), 0, clone[i] + clone[i + 1])
   })
-  array.pop()
+  array.slice(0, -1)
 
   return array
 }
