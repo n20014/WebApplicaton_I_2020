@@ -1,9 +1,8 @@
 # WebApplicaton_I_2020
 
-
 ## Lecture
 
-- [第10回 12/16](./docs/lecture20210112.md)
+- [第10回 01/12](./docs/lecture20210112.md)
 - [第 8回 12/16](./docs/lecture20201216.md)
 - [第 7回 12/15](./docs/lecture20201215.md)
 - [第 6回 12/10](./docs/lecture20201210.md)
@@ -14,7 +13,6 @@
 - [第 1回 12/01](./docs/lecture20201201.md)
 
 ## References
-
 
 ### Document
 
@@ -35,8 +33,8 @@
 - [ドットインストール React 入門](https://dotinstall.com/lessons/basic_reactjs)
 - [Codeprep](https://codeprep.jp/)
 - [Paiza](https://paiza.jp/)
-    - [JavaScript入門編](https://paiza.jp/works/js/primer)
-    - [問題集](https://paiza.jp/works/mondai)
+  - [JavaScript入門編](https://paiza.jp/works/js/primer)
+  - [問題集](https://paiza.jp/works/mondai)
 
 ### sources
 
