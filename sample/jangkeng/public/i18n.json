@@ -1,0 +1,20 @@
+{
+    "ja": {
+        "title": "じゃんけん ポン!",
+        "hand": ["グー", "チョキ", "パー"],
+        "judgements": ["引き分け", "勝ち", "負け"],
+        "header": ["あなた", "コンピュータ", "勝ち負け"]
+    },
+    "cn": {
+        "title": "简肯蓬",
+        "hands": ["石头", "剪刀", "布"],
+        "judgements": ["和局", "胜", "败"],
+        "header": ["您", "电脑", "胜负"]
+    },
+    "en": {
+        "title": "Rock Paper Scissors",
+        "hands": ["Rock", "Scissors", "Paper"],
+        "judgements": ["draw", "win", "lose"],
+        "header": ["You", "Computer", "WinLose"]
+    }
+}
