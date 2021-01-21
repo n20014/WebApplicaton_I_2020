@@ -5,66 +5,54 @@ class JangKengGame extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      player: null,
-      computer: null,
-      judgement: null
-    }
-    this.lang = 'en'
-    this.i18n = {
-      ja: {
-        title: 'じゃんけん ポン!',
-        hands: ['グー', 'チョキ', 'パー'],
-        judgements: ['引き分け', '勝ち', '負け'],
-        header: ['あなた', 'コンピュータ', '勝ち負け']
+      basics: {
+        player: null,
+        computer: null,
+        judgement: null
       },
-      cn: {
-        title: '简肯蓬',
-        hands: ['石头', '剪刀', '布'],
-        judgements: ['和局', '胜', '败'],
-        header: ['您', '电脑', '胜负']
-      },
-      en: {
-        title: 'Rock Paper Scissors',
-        hands: ['Rock', 'Scissors', 'Paper'],
-        judgements: ['draw', 'win', 'lose'],
-        header: ['You', 'Computer', 'WinLose']
-      }
+      i18n: null
     }
+    this.URI = 'http://localhost:8080/i18n.json'
+    this.LANG = 'en'
   }
 
   componentDidMount () {
-    this.setState({ player: 0, computer: 0, judgement: 0 })
+    window
+      .fetch(this.URI)
+      .then(res => res.json())
+      .then(json => json[this.LANG])
+      .then(data => this.setState({ i18n: data }))
   }
 
   judge (cpu, user) {
     return (cpu - user + 3) % 3
   }
 
-  handleClick (value) {
-    const userHand = Object.values(value)[0]
-    const cpuHand = (userHand + 2) % 3
+  handleClick (hand) {
+    const userHand = hand
+    const cpuHand = Math.floor(Math.random() * 3)
     const judgement = this.judge(cpuHand, userHand)
-    this.setState({ player: userHand, computer: cpuHand, judgement: judgement })
+    this.setState({
+      basics: { player: userHand, computer: cpuHand, judgement: judgement }
+    })
   }
 
   render () {
-    const title = this.i18n[this.lang].title
+    if (!this.state.i18n) return <div> Now Loading...</div>
+    const { title, hands } = this.state.i18n
     return (
       <>
         <h1>{title}</h1>
-        <InputBox
-          hands={this.i18n[this.lang].hands}
-          onClick={v => this.handleClick(v)}
-        />
-        <TableView status={this.state} lang={this.i18n[this.lang]} />
+        <InputBox hands={hands} onClick={v => this.handleClick(v)} />
+        <TableView status={this.state} />
       </>
     )
   }
 }
 
 const TableView = props => {
-  const { player, computer, judgement } = props.status
-  const { hands, judgements, header } = props.lang
+  const { player, computer, judgement } = props.status.basics
+  const { hands, judgements, header } = props.status.i18n
   const contents = [
     [header[0], hands[player]],
     [header[1], hands[computer]],
@@ -89,7 +77,7 @@ const InputBox = props => {
   return (
     <>
       {hands.map((v, i) => (
-        <button key={v} onClick={() => onClick({ i })}>
+        <button key={v} onClick={() => onClick(i)}>
           {v}
         </button>
       ))}
