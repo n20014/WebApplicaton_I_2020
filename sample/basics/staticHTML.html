@@ -1,0 +1,11 @@
+<!doctype html>
+<meta charset = 'urf-8' >
+<title >static html use DOM</title>
+<div id='root'></div>
+
+<script>
+const container = document.getElementById('root')
+const elTitle = document.createElement('h1')
+elTitle.textContent = 'Hello World!'
+container.appendChild(elTitle)
+</script>

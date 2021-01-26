@@ -1,0 +1,33 @@
+<!doctype html>
+<meta charset = 'urf-8' >
+<title >static html use DOM</title>
+<button id='btn1'>Push</button>
+<div id='root'></div>
+
+<script>
+const container = document.getElementById('root')
+const button = document.getElementById('btn1')
+const elTitle = document.createElement('h1')
+container.appendChild(elTitle)
+
+const script = [
+    'むかしむかし',
+    'あるところに',
+    'おじいさんとおばあさんが',
+    'すんでいました',
+]
+
+function* generator (script) {
+    for (let sentence of script) {
+        yield sentence
+    }
+}
+
+const gen = generator(script)
+button.addEventListener('click', (event) => {
+    const sentence = gen.next().value
+    elTitle.textContent = sentence ? sentence : 'おしまい'   
+}, false)
+
+
+</script>
