@@ -8,7 +8,7 @@
 const container = document.getElementById('root')
 const eButton = document.getElementById('btn1')
 const eTitle = document.createElement('h1')
-container.appendChild(elTitle)
+container.appendChild(eTitle)
 
 const script = [
     'むかしむかし',
@@ -26,7 +26,7 @@ const gen = (script => {
 
 eButton.addEventListener('click', (event) => {
     const sentence = gen.next().value
-    elTitle.textContent = sentence ? sentence : 'おしまい'   
+    eTitle.textContent = sentence ? sentence : 'おしまい'   
 }, false)
 
 </script>
