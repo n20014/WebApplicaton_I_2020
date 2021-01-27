@@ -6,8 +6,8 @@
 
 <script>
 const container = document.getElementById('root')
-const button = document.getElementById('btn1')
-const elTitle = document.createElement('h1')
+const eButton = document.getElementById('btn1')
+const eTitle = document.createElement('h1')
 container.appendChild(elTitle)
 
 const script = [
@@ -17,17 +17,16 @@ const script = [
     'すんでいました',
 ]
 
-function* generator (script) {
-    for (let sentence of script) {
-        yield sentence
-    }
-}
+const gen = (script => {
+  const _generator = function * (iter) {
+    yield* iter
+  }
+  return _generator(script)
+})(script)
 
-const gen = generator(script)
-button.addEventListener('click', (event) => {
+eButton.addEventListener('click', (event) => {
     const sentence = gen.next().value
     elTitle.textContent = sentence ? sentence : 'おしまい'   
 }, false)
-
 
 </script>
