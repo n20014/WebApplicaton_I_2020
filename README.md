@@ -2,7 +2,8 @@
 
 ## Lecture
 
-- [第16回 01/26](./docs/lecture20210126.md)
+- [第19回-21回 02/02](./docs/lecture20210202.md)
+- [第16-18回 01/26](./docs/lecture20210126.md)
 - [第14-15回 01/20](./docs/lecture20210120.md)
 - [第13回 01/19](./docs/lecture20210119.md)
 - [第10-12回 01/12](./docs/lecture20210112.md)
